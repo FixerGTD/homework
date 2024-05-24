@@ -1,0 +1,93 @@
+## Custom application properties
+app:
+  version: @project.version@
+  api:
+    version: "v1"
+  patterns:
+    datetime: "yyyy-MM-dd HH:mm:ss"
+    date: "yyyy-MM-dd"
+  executor-service:
+    threads:
+      min: 1
+      max: 10
+      keep-alive-ms: 50
+
+# Spring properties
+spring:
+
+  application:
+    name: homework
+    # Database properties
+  jpa:
+    database:
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: none
+    show-sql: true
+    open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        generate_statistics: false
+        order_updates: true
+        order_inserts: true
+        jdbc:
+          batch_size: 100
+          time_zone: UTC
+
+  liquibase:
+    enabled: true
+    drop-first: false
+    default-schema: public
+    change-log: "classpath:/db/migration/master.xml"
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: "jdbc:postgresql://localhost:5432/postgres"
+    username: "postgres"
+    password: "password"
+    hikari:
+      initialization-fail-timeout: 60000
+      maximum-pool-size: 10
+  sql:
+    init:
+      platform: postgres
+
+# Application health and information management
+management:
+  info.git:
+    mode: full
+    enabled: true
+  endpoints.web.exposure.include: "*"
+  endpoint:
+    shutdown.enabled: true
+    health.show-details: always
+
+# Server configs
+server:
+  port: 8080
+  ## Should be included to show message, if not error message will be empty
+  error:
+    include-message: always
+    include-binding-errors: always
+  servlet:
+    context-path: /${app.api.version}/
+
+# Logging settings
+logging.level:
+  org:
+    hibernate:
+      SQL: info
+      type: trace
+      type.descriptor.sql.BasicBinder: trace
+    springframework:
+      cache: trace
+      web: debug
+  web: debug
+  root: info
+  com.velsera.homework: debug
+

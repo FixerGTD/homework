@@ -1,0 +1,131 @@
+[
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/v1/tweets"
+    },
+    "httpResponse": {
+      "body": {
+        "success": true,
+        "message": null,
+        "totalCount": 6,
+        "error": null,
+        "records": [
+        ]
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/v1/tweets"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": [
+        {
+          "name": "Content-Type",
+          "values": [
+            "application/json"
+          ]
+        },
+        {
+          "name": "X-Username",
+          "values": [
+            "andrija1",
+            "andrija2",
+            "andrija3"
+          ]
+        }
+      ],
+      "body": {
+        "success": true,
+        "totalCount": 6,
+        "records": [
+          {
+            "tweets": [
+              {
+                "tweetId": "4dkPRdTJGEKul75FYUnQ",
+                "tweetBody": "Hello sb-twitter. This is my new tweet.",
+                "hashTags": [
+                  "#life",
+                  "#hacks"
+                ],
+                "createdBy": "sbg_user1",
+                "createdAt": "2024-05-22T17:03:36.759Z"
+              },
+              {
+                "tweetId": "1a2b3c4d5e6f7g8h9i0j",
+                "tweetBody": "Just had the best coffee ever! #coffee #morning",
+                "hashTags": [
+                  "#coffee",
+                  "#morning"
+                ],
+                "createdBy": "coffee_lover",
+                "createdAt": "2024-05-21T08:30:00.000Z"
+              },
+              {
+                "tweetId": "z9y8x7w6v5u4t3s2r1q",
+                "tweetBody": "Exploring the great outdoors! #nature #hiking",
+                "hashTags": [
+                  "#nature",
+                  "#hiking"
+                ],
+                "createdBy": "nature_explorer",
+                "createdAt": "2024-05-20T14:45:30.000Z"
+              },
+              {
+                "tweetId": "abc123def456ghi789jkl",
+                "tweetBody": "Check out my new blog post on web development! #webdev #coding",
+                "hashTags": [
+                  "#webdev",
+                  "#coding"
+                ],
+                "createdBy": "dev_blogger",
+                "createdAt": "2024-05-22T12:00:00.000Z"
+              },
+              {
+                "tweetId": "m1n2o3p4q5r6s7t8u9v0",
+                "tweetBody": "Watching a beautiful sunset. #sunset #relaxation",
+                "hashTags": [
+                  "#sunset",
+                  "#relaxation"
+                ],
+                "createdBy": "sunset_lover",
+                "createdAt": "2024-05-21T19:15:45.000Z"
+              },
+              {
+                "tweetId": "1x2y3z4a5b6c7d8e9f0g",
+                "tweetBody": "Just finished a great book! #reading #books",
+                "hashTags": [
+                  "#reading",
+                  "#books"
+                ],
+                "createdBy": "bookworm",
+                "createdAt": "2024-05-20T10:20:10.000Z"
+              }
+            ],
+            "nextPage": "https://api.sb-tweets.test/v1/tweets?limit=5&offset=10&hashTag=%23life&hashTag=%23hacks"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "DELETE",
+      "path": "/v1/tweets"
+    },
+    "httpResponse": {
+      "body": {
+        "success": true,
+        "message": null,
+        "totalCount": 1,
+        "error": null,
+        "records": [
+          {}
+        ]
+      }
+    }
+  }
+]

@@ -1,6 +1,6 @@
 # homework
 
-A set of interacting services, that mimic some end-point of Twitter api.
+
 
 ## Getting started
 
