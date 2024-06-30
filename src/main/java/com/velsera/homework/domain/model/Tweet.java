@@ -1,11 +1,7 @@
 package com.velsera.homework.domain.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import org.hibernate.Hibernate;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -13,11 +9,12 @@ import java.time.ZonedDateTime;
 import java.util.Objects;
 
 @Entity
-@Table(name = "TWEET")
+@Table(name = "tweet")
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class Tweet implements Serializable {
 
     @Serial
@@ -27,10 +24,10 @@ public class Tweet implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(nullable = false, unique = true, name = "TWEET_ID")
-    private Long id;
+    private Long tweetId;
 
     @Column(name = "TWEET_BODY")
-    private String body;
+    private String tweetBody;
 
     @Column(name = "HASH_TAGS")
     private String hashTags;
@@ -43,18 +40,13 @@ public class Tweet implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
-            return false;
-        }
-        Tweet that = (Tweet) o;
-        return id != null && Objects.equals(id, that.id);
+        if (this == o) return true;
+        if (!(o instanceof Tweet tweet)) return false;
+        return Objects.equals(tweetId, tweet.tweetId) && Objects.equals(createdAt, tweet.createdAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getBody(), getCreatedBy(), getCreatedBy());
+        return Objects.hash(tweetId, createdAt);
     }
 }

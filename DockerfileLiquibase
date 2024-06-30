@@ -1,0 +1,8 @@
+# LiquibaseDockerfile
+FROM liquibase/liquibase:latest
+COPY liquibase.properties /liquibase/
+COPY src/main/resources/db/changelog /liquibase/changelog
+WORKDIR /liquibase
+
+# Set the entrypoint to drop all tables, clear checksums, and then run update
+ENTRYPOINT ["sh", "-c", "liquibase dropAll && liquibase clearCheckSums && liquibase update"]

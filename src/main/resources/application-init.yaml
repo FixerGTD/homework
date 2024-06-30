@@ -1,0 +1,6 @@
+# Overriders below properties in order to create and populate a local database.
+# This profile should be run only first time when starting application from a local IDE.
+spring:
+  liquibase:
+    enabled: true
+    drop-first: true

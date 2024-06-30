@@ -89,7 +89,7 @@ paths:
           style: form
           explode: true
         - in: query
-          name: limit
+          name: pageLimit
           description: Size of the page of results.
           required: false
           schema:
@@ -98,7 +98,7 @@ paths:
             maximum: 100
             default: 50
         - in: query
-          name: offset
+          name: pageOffset
           description: Offset of the page of results.
           required: false
           schema:

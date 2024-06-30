@@ -1,19 +1,17 @@
 package com.velsera.homework.repository;
 
 import com.velsera.homework.domain.model.Tweet;
-import org.springframework.data.domain.Example;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.velsera.homework.domain.records.TweetResponseRecord;
 
 import java.util.List;
 
-public interface TweetRepository extends JpaRepository<Tweet, Long> {
+public interface TweetRepository {
 
-    @Override
-    <S extends Tweet> S save(S entity);
+    List<TweetResponseRecord> findTweetsByUsernameAndHashTags(List<String> createdBy, List<String> hashTags, Long pageLimit, Long pageOffset);
 
-    @Override
-    <S extends Tweet> List<S> findAll(Example<S> example);
+    List<TweetResponseRecord> findTweetsByUsernameAndHashTagsOld(List<String> createdBy, List<String> hashTags, Long pageLimit, Long pageOffset);
 
-    @Override
-    void deleteById(Long aLong);
+    TweetResponseRecord postNewTweet(Tweet tweet);
+
+    Tweet deleteTweetByIdAndUsername(String xUsername, Long tweetId);
 }

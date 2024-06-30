@@ -1,16 +1,7 @@
-### Start of builder image
-# ------------------------
-# Builder stage to prepare application for final image
-# Secured and Log4Shell CVE not detected
-FROM openjdk:18-alpine3.15 as builder
-WORKDIR temp
-
-# Could be set to different jar file location
-ARG JAR_FILE=target/*.jar
-
-# Copy fat jar file to current image builder
-COPY ${JAR_FILE} application.jar
-
-# Extract the jar file layers
-RUN java -Djarmode=layertools -jar --enable-preview application.jar extract
-
+FROM amazoncorretto:18.0.2-alpine3.16
+RUN apk update && apk add --no-cache libc6-compat && ln -s /lib/libc.musl-x86_64.so.1 /lib/ld-linux-x86-64.so.2
+ENV LD_PRELOAD=/lib/libgcompat.so.0
+RUN mkdir /homework
+ADD target/homework-0.0.1-SNAPSHOT.jar /homework/homework-0.0.1-SNAPSHOT.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/homework/homework-0.0.1-SNAPSHOT.jar"]
